@@ -1,0 +1,7 @@
+anthropic
+python-dotenv
+yfinance
+requests
+beautifulsoup4
+pandas
+streamlit

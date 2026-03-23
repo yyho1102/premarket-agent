@@ -1,0 +1,45 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "▶ 台積電 TSMC",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/stocks/tsmc.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "▶ 國巨 YAGEO",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/stocks/yageo.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "▶ 聯茂 ITEQ",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/stocks/iteq.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "▶ 全部分析 (main)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/main.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "▶ 排程器 (scheduler)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/scheduler.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ]
+}

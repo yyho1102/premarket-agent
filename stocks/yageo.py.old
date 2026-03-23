@@ -1,0 +1,116 @@
+"""
+stocks/yageo.py
+國巨 (2327) 盤前分析
+日本被動元件對標：Resonac (前日立化成)、TDK、太陽誘電、Alps Alpine
+"""
+
+import numpy as np
+from datetime import datetime
+import json, sys, os
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from utils.fetcher import get_change, weighted_signal, compute_correlation
+
+TW_SYMBOL = "2327.TW"
+
+JP_PASSIVE = {
+    "6981.T": {"name": "村田製作所 Murata",   "weight": 0.40, "note": "MLCC全球第一，最直接領先指標"},
+    "6762.T": {"name": "TDK",                  "weight": 0.25, "note": "電感/電容/磁性元件"},
+    "6976.T": {"name": "太陽誘電 Taiyo Yuden", "weight": 0.20, "note": "MLCC第四大，同蘋果供應鏈"},
+    "6770.T": {"name": "Alps Alpine",           "weight": 0.15, "note": "電子元件，汽車/IoT"},
+}
+
+US_DOWNSTREAM = {
+    "AAPL": {"name": "Apple",  "weight": 0.30, "note": "最大MLCC消費端"},
+    "NVDA": {"name": "NVIDIA", "weight": 0.25, "note": "AI伺服器需求，鉭電容大客戶"},
+    "AMAT": {"name": "AMAT",   "weight": 0.20, "note": "半導體設備"},
+    "DELL": {"name": "Dell",   "weight": 0.15, "note": "AI伺服器組裝"},
+    "HPQ":  {"name": "HP",     "weight": 0.10, "note": "消費電子需求端"},
+}
+
+
+def analyze() -> dict:
+    print("=" * 58)
+    print("國巨 (2327) 盤前分析")
+    print(f"時間: {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+    print("=" * 58)
+
+    print("\n[1/4] 日本被動元件對標...")
+    jp_sig = weighted_signal(JP_PASSIVE)
+    print(f"  加權均漲跌: {jp_sig['score']:+.2f}%")
+    for d in jp_sig["details"]:
+        print(f"  {d['name']:22s}: {d['change_pct']:+.2f}%  量比{d['vol_ratio']:.1f}x")
+
+    print("\n[2/4] 美股下游需求端...")
+    us_sig = weighted_signal(US_DOWNSTREAM)
+    print(f"  加權均漲跌: {us_sig['score']:+.2f}%")
+
+    print("\n[3/4] 原物料...")
+    silver = get_change("SI=F")
+    silver_chg = silver["change_pct"] if silver else 0.0
+    print(f"  白銀: {silver_chg:+.2f}%")
+
+    print("\n[4/4] 相關係數 (6個月)...")
+    corr_jp = compute_correlation(TW_SYMBOL, list(JP_PASSIVE.keys()))
+    corr_us = compute_correlation(TW_SYMBOL, list(US_DOWNSTREAM.keys()))
+    print(f"  國巨 vs 日本被動元件: {corr_jp:.3f}")
+    print(f"  國巨 vs 美股下游:     {corr_us:.3f}")
+
+    # 銀價因子：超過 2% 代表可轉嫁（正向），否則為成本壓力
+    silver_factor = 0.3 if silver_chg > 2.0 else (-0.1 * silver_chg)
+
+    raw_pred = (jp_sig["score"] * 0.50 + us_sig["score"] * 0.35) * 0.65 + silver_factor * 0.15
+    if corr_jp > 0.7:
+        raw_pred *= 1.1
+    elif corr_jp < 0.4:
+        raw_pred *= 0.8
+
+    predicted_chg = round(raw_pred, 2)
+
+    if np.sign(jp_sig["score"]) == np.sign(us_sig["score"]) and abs(jp_sig["score"]) > 1.0:
+        confidence, conf_pct = "高", 75
+    elif abs(jp_sig["score"]) > 0.5:
+        confidence, conf_pct = "中", 55
+    else:
+        confidence, conf_pct = "低", 35
+
+    top_jp = max(jp_sig["details"], key=lambda x: abs(x["change_pct"]), default=None)
+    key_signals = []
+    if top_jp:
+        key_signals.append(f"{'↑' if top_jp['change_pct'] > 0 else '↓'} {top_jp['name']} {top_jp['change_pct']:+.1f}%")
+    if abs(silver_chg) > 1.5:
+        key_signals.append(f"銀價 {silver_chg:+.1f}%")
+
+    risk_flags = []
+    if np.sign(jp_sig["score"]) != np.sign(us_sig["score"]):
+        risk_flags.append("日美訊號分歧")
+
+    result = {
+        "timestamp":  datetime.now().isoformat(),
+        "stock":      {"symbol": TW_SYMBOL, "name": "國巨"},
+        "jp_passive": jp_sig,
+        "us_downstream": us_sig,
+        "silver_chg": silver_chg,
+        "correlation": {"jp_6mo": corr_jp, "us_6mo": corr_us},
+        "prediction": {
+            "predicted_change_pct": predicted_chg,
+            "confidence":           confidence,
+            "confidence_pct":       conf_pct,
+            "key_signals":          key_signals,
+            "risk_flags":           risk_flags,
+        },
+    }
+
+    arrow = "▲" if predicted_chg > 0 else "▼"
+    print(f"\n{'='*58}")
+    print(f"國巨預測: {arrow} {predicted_chg:+.2f}%  ({confidence}信心 {conf_pct}%)")
+    return result
+
+
+if __name__ == "__main__":
+    result = analyze()
+    os.makedirs("reports", exist_ok=True)
+    fname = f"reports/yageo_{datetime.now().strftime('%Y%m%d_%H%M')}.json"
+    with open(fname, "w", encoding="utf-8") as f:
+        json.dump(result, f, ensure_ascii=False, indent=2)
+    print(f"\n報告輸出: {fname}")

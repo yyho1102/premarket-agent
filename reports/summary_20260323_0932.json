@@ -1,0 +1,526 @@
+{
+  "timestamp": "2026-03-23T09:32:10.965755",
+  "stocks": {
+    "iteq": {
+      "timestamp": "2026-03-23T09:32:05.172884",
+      "stock": {
+        "symbol": "6213.TW",
+        "name": "聯茂電子"
+      },
+      "tw_prev_close": 143.5,
+      "tw_source": "fallback（TWSE失敗）",
+      "jp_materials": {
+        "score": -5.793,
+        "details": [
+          {
+            "symbol": "4004.T",
+            "name": "Resonac（前日立化成）",
+            "change_pct": -7.05,
+            "vol_ratio": 0.43,
+            "weight": 0.4,
+            "note": "PCB層壓材料＆半導體後工程材料，使用者指定核心對標"
+          },
+          {
+            "symbol": "6752.T",
+            "name": "Panasonic Holdings",
+            "change_pct": -3.98,
+            "vol_ratio": 0.32,
+            "weight": 0.25,
+            "note": "Megtron高速CCL，與聯茂搶同一客戶"
+          },
+          {
+            "symbol": "4203.T",
+            "name": "住友電木",
+            "change_pct": -4.123,
+            "vol_ratio": 0.33,
+            "weight": 0.2,
+            "note": "半導體封裝材料＆PCB基板樹脂"
+          },
+          {
+            "symbol": "4183.T",
+            "name": "三井化學",
+            "change_pct": -7.69,
+            "vol_ratio": 0.85,
+            "weight": 0.15,
+            "note": "CCL上游環氧樹脂供應商"
+          }
+        ]
+      },
+      "us_ai": {
+        "score": -2.085,
+        "details": [
+          {
+            "symbol": "NVDA",
+            "name": "NVIDIA",
+            "change_pct": -3.153,
+            "vol_ratio": 1.39,
+            "weight": 0.35,
+            "note": "AI加速器最大買家，高階CCL需求直接指標"
+          },
+          {
+            "symbol": "AVGO",
+            "name": "Broadcom",
+            "change_pct": -2.917,
+            "vol_ratio": 1.4,
+            "weight": 0.25,
+            "note": "ASIC晶片＆800G交換器PCB大客戶"
+          },
+          {
+            "symbol": "MSFT",
+            "name": "Microsoft",
+            "change_pct": -1.843,
+            "vol_ratio": 1.51,
+            "weight": 0.2,
+            "note": "Azure資料中心擴張"
+          },
+          {
+            "symbol": "DELL",
+            "name": "Dell Technologies",
+            "change_pct": 0.581,
+            "vol_ratio": 2.91,
+            "weight": 0.2,
+            "note": "AI伺服器組裝出貨"
+          }
+        ]
+      },
+      "materials": {
+        "copper_chg": -0.112,
+        "usd_chg": -0.066
+      },
+      "chips": {
+        "stock_id": "6213",
+        "stock_name": "聯茂電子",
+        "market": "上櫃(TPEx)",
+        "institutional": {
+          "foreign_net": -177235,
+          "trust_net": 3598,
+          "dealer_net": -629287,
+          "total_net": -802924,
+          "signal": "外資主導賣超",
+          "source": "FinMind",
+          "date": "2026-03-20"
+        },
+        "margin": {
+          "margin_balance": 0,
+          "margin_change": -2081,
+          "margin_usage": 0.0,
+          "short_balance": 0,
+          "short_change": -147,
+          "short_ratio": 0.0,
+          "signal": "融資融券平穩"
+        },
+        "chips_score": -1.2,
+        "overall": "籌碼偏空",
+        "notes": [
+          "外資賣超 177,235 股",
+          "投信買超 3,598 股"
+        ],
+        "updated_at": "2026-03-23T09:32:01.739026"
+      },
+      "sentiment": {
+        "stock_id": "6213",
+        "stock_name": "聯茂電子",
+        "stock_news": {
+          "score": 0.0,
+          "label": "中性（無資料）",
+          "summary": "無法取得新聞資料",
+          "key_news": [],
+          "risks": [],
+          "news_count": 0
+        },
+        "market_news": {
+          "score": 0.0,
+          "label": "中性（無資料）",
+          "summary": "無法取得新聞資料",
+          "key_news": [],
+          "risks": [],
+          "news_count": 0
+        },
+        "combined_score": 0.0,
+        "combined_label": "中性"
+      },
+      "analyst": {
+        "stock_id": "6213",
+        "stock_name": "聯茂電子",
+        "symbol": "6213.TW",
+        "current_price": 139.0,
+        "target_mean": 125.72222,
+        "target_high": 152.0,
+        "target_low": 89.5,
+        "target_median": 133.0,
+        "upside_pct": -9.6,
+        "recommendation": "持有",
+        "rec_key": "hold",
+        "n_analysts": 9,
+        "signal": "持有但已超漲",
+        "fetched_at": "2026-03-23T09:32:05.172345"
+      },
+      "correlation": {
+        "resonac_6mo": 0.331,
+        "jp_6mo": 0.422,
+        "us_6mo": 0.5
+      },
+      "prediction": {
+        "predicted_change_pct": -2.16,
+        "predicted_price_twd": 140.0,
+        "confidence": "高",
+        "confidence_pct": 78,
+        "key_signals": [
+          "↓ Resonac -7.0%",
+          "↓ NVIDIA -3.2%",
+          "新聞情緒 中性（+0.00）"
+        ],
+        "risk_flags": []
+      }
+    },
+    "yageo": {
+      "timestamp": "2026-03-23T09:32:05.201544",
+      "stock": {
+        "symbol": "2327.TW",
+        "name": "國巨"
+      },
+      "tw_prev_close": 275.0,
+      "tw_source": "fallback（TWSE失敗）",
+      "jp_passive": {
+        "score": -6.094,
+        "details": [
+          {
+            "symbol": "6981.T",
+            "name": "村田製作所 Murata",
+            "change_pct": -6.91,
+            "vol_ratio": 0.42,
+            "weight": 0.4,
+            "note": "MLCC全球第一，最直接領先指標"
+          },
+          {
+            "symbol": "6762.T",
+            "name": "TDK",
+            "change_pct": -5.64,
+            "vol_ratio": 0.28,
+            "weight": 0.25,
+            "note": "電感/電容/磁性元件"
+          },
+          {
+            "symbol": "6976.T",
+            "name": "太陽誘電 Taiyo Yuden",
+            "change_pct": -5.585,
+            "vol_ratio": 0.25,
+            "weight": 0.2,
+            "note": "MLCC第四大，同蘋果供應鏈"
+          },
+          {
+            "symbol": "6770.T",
+            "name": "Alps Alpine",
+            "change_pct": -5.355,
+            "vol_ratio": 0.29,
+            "weight": 0.15,
+            "note": "電子元件，汽車/IoT"
+          }
+        ]
+      },
+      "us_downstream": {
+        "score": -0.94,
+        "details": [
+          {
+            "symbol": "AAPL",
+            "name": "Apple",
+            "change_pct": -0.39,
+            "vol_ratio": 1.91,
+            "weight": 0.3,
+            "note": "最大MLCC消費端"
+          },
+          {
+            "symbol": "NVDA",
+            "name": "NVIDIA",
+            "change_pct": -3.153,
+            "vol_ratio": 1.39,
+            "weight": 0.25,
+            "note": "AI伺服器需求，鉭電容大客戶"
+          },
+          {
+            "symbol": "AMAT",
+            "name": "AMAT",
+            "change_pct": -0.042,
+            "vol_ratio": 2.28,
+            "weight": 0.2,
+            "note": "半導體設備"
+          },
+          {
+            "symbol": "DELL",
+            "name": "Dell",
+            "change_pct": 0.581,
+            "vol_ratio": 2.91,
+            "weight": 0.15,
+            "note": "AI伺服器組裝"
+          },
+          {
+            "symbol": "HPQ",
+            "name": "HP",
+            "change_pct": -1.136,
+            "vol_ratio": 0.88,
+            "weight": 0.1,
+            "note": "消費電子需求端"
+          }
+        ]
+      },
+      "silver_chg": -2.509,
+      "chips": {
+        "stock_id": "2327",
+        "stock_name": "國巨",
+        "market": "上市(TWSE)",
+        "institutional": {
+          "foreign_net": -4669921,
+          "trust_net": 321604,
+          "dealer_net": -511044,
+          "total_net": -4859361,
+          "signal": "外資主導賣超",
+          "source": "FinMind",
+          "date": "2026-03-20"
+        },
+        "margin": {
+          "margin_balance": 39266,
+          "margin_change": 290,
+          "margin_usage": 7.6,
+          "short_balance": 4,
+          "short_change": -59,
+          "short_ratio": 0.0,
+          "signal": "融資增、融券減（偏多）"
+        },
+        "chips_score": -2.0,
+        "overall": "籌碼偏空",
+        "notes": [
+          "外資賣超 4,669,921 股",
+          "投信買超 321,604 股",
+          "融資增 290 張"
+        ],
+        "updated_at": "2026-03-23T09:32:02.049194"
+      },
+      "sentiment": {
+        "stock_id": "2327",
+        "stock_name": "國巨",
+        "stock_news": {
+          "score": 0.0,
+          "label": "中性（無資料）",
+          "summary": "無法取得新聞資料",
+          "key_news": [],
+          "risks": [],
+          "news_count": 0
+        },
+        "market_news": {
+          "score": 0.0,
+          "label": "中性（無資料）",
+          "summary": "無法取得新聞資料",
+          "key_news": [],
+          "risks": [],
+          "news_count": 0
+        },
+        "combined_score": 0.0,
+        "combined_label": "中性"
+      },
+      "analyst": {
+        "stock_id": "2327",
+        "stock_name": "國巨",
+        "symbol": "2327.TW",
+        "current_price": 256.0,
+        "target_mean": 331.41666,
+        "target_high": 364.0,
+        "target_low": 280.0,
+        "target_median": 340.0,
+        "upside_pct": 29.5,
+        "recommendation": "買進",
+        "rec_key": "buy",
+        "n_analysts": 12,
+        "signal": "分析師強烈看多（大幅折價）",
+        "fetched_at": "2026-03-23T09:32:05.201173"
+      },
+      "correlation": {
+        "jp_6mo": 0.5,
+        "us_6mo": 0.017
+      },
+      "prediction": {
+        "predicted_change_pct": -2.19,
+        "predicted_price_twd": 269.0,
+        "confidence": "高",
+        "confidence_pct": 75,
+        "key_signals": [
+          "↓ 村田製作所 Murata -6.9%",
+          "銀價 -2.5%",
+          "新聞情緒 中性（+0.00）"
+        ],
+        "risk_flags": []
+      }
+    },
+    "tsmc": {
+      "timestamp": "2026-03-23T09:32:10.962182",
+      "stock": {
+        "symbol": "2330.TW",
+        "name": "台積電"
+      },
+      "adr": {
+        "price_usd": 329.24,
+        "prev_usd": 338.79,
+        "change_pct": -2.819,
+        "vol_ratio": 1.31,
+        "usdtwd": 32.08,
+        "implied_twd": 2112.4,
+        "premium_pct": -2.82,
+        "premium_twd": -51.9
+      },
+      "tw_prev_close": 1840.0,
+      "tw_source": "fallback（TWSE失敗）",
+      "key_customers": {
+        "score": -1.91,
+        "details": [
+          {
+            "symbol": "NVDA",
+            "name": "NVIDIA",
+            "change_pct": -3.153,
+            "vol_ratio": 1.39,
+            "weight": 0.55,
+            "note": "AI加速器最大客戶，HPC晶圓佔營收 ~35%"
+          },
+          {
+            "symbol": "AAPL",
+            "name": "Apple",
+            "change_pct": -0.39,
+            "vol_ratio": 1.91,
+            "weight": 0.45,
+            "note": "手機/M系列最大客戶，蘋果佔營收 ~25%"
+          }
+        ]
+      },
+      "aux_refs": {
+        "score": -2.058,
+        "details": [
+          {
+            "symbol": "AMD",
+            "name": "AMD",
+            "change_pct": -1.919,
+            "vol_ratio": 0.91,
+            "weight": 0.3,
+            "note": "GPU/CPU 全委外台積電"
+          },
+          {
+            "symbol": "AVGO",
+            "name": "Broadcom",
+            "change_pct": -2.917,
+            "vol_ratio": 1.4,
+            "weight": 0.25,
+            "note": "ASIC / 網通晶片"
+          },
+          {
+            "symbol": "QCOM",
+            "name": "Qualcomm",
+            "change_pct": -1.051,
+            "vol_ratio": 7.31,
+            "weight": 0.25,
+            "note": "手機 AP 主力客戶"
+          },
+          {
+            "symbol": "^SOX",
+            "name": "費城半導體",
+            "change_pct": -2.451,
+            "vol_ratio": 1.0,
+            "weight": 0.2,
+            "note": "大盤情緒參考"
+          }
+        ]
+      },
+      "chips": {
+        "stock_id": "2330",
+        "stock_name": "台積電",
+        "market": "上市(TWSE)",
+        "institutional": {
+          "foreign_net": -6768881,
+          "trust_net": -4028408,
+          "dealer_net": -36100,
+          "total_net": -10833389,
+          "signal": "三大齊賣（強空）",
+          "source": "FinMind",
+          "date": "2026-03-20"
+        },
+        "margin": {
+          "margin_balance": 26115,
+          "margin_change": -98,
+          "margin_usage": 0.4,
+          "short_balance": 7,
+          "short_change": 0,
+          "short_ratio": 0.0,
+          "signal": "融資融券平穩"
+        },
+        "chips_score": -3.2,
+        "overall": "籌碼強烈偏空",
+        "notes": [
+          "外資賣超 6,768,881 股",
+          "投信賣超 4,028,408 股"
+        ],
+        "updated_at": "2026-03-23T09:32:01.412649"
+      },
+      "sentiment": {
+        "stock_id": "2330",
+        "stock_name": "台積電",
+        "stock_news": {
+          "score": 0.6,
+          "label": "偏多",
+          "summary": "台積電股東數創246萬新高顯示散戶信心強勁，AI投資題材持續受關注，但面臨Tesla/SpaceX自建晶片廠競爭壓力及地緣政治風險。整體而言正面情緒略勝一籌。",
+          "key_news": [
+            "Taiwan Semiconductor Controls 72% of the Global Chip Market, and the Stock Could Surge in 2026",
+            "台積電股東數246萬人再創新高",
+            "Musk says SpaceX and Tesla to build advanced chip factories in Austin"
+          ],
+          "risks": [
+            "Tesla與SpaceX計劃在德州自建先進晶片廠，可能減少對台積電依賴",
+            "地緣政治緊張情勢升溫，伊朗戰爭可能衝擊AI產業發展"
+          ],
+          "news_count": 15,
+          "method": "claude"
+        },
+        "market_news": {
+          "score": 0.0,
+          "label": "中性（無資料）",
+          "summary": "無法取得新聞資料",
+          "key_news": [],
+          "risks": [],
+          "news_count": 0
+        },
+        "combined_score": 0.42,
+        "combined_label": "偏多"
+      },
+      "analyst": {
+        "stock_id": "TSM",
+        "stock_name": "台積電ADR",
+        "symbol": "TSM",
+        "current_price": 329.24,
+        "target_mean": 430.65167,
+        "target_high": 520.0,
+        "target_low": 351.0,
+        "target_median": 433.25,
+        "upside_pct": 30.8,
+        "recommendation": "強力買進",
+        "rec_key": "strong_buy",
+        "n_analysts": 18,
+        "signal": "分析師強烈看多（大幅折價）",
+        "fetched_at": "2026-03-23T09:32:10.961042"
+      },
+      "correlation": {
+        "customers": -0.003,
+        "aux": 0.074
+      },
+      "prediction": {
+        "predicted_change_pct": -1.84,
+        "predicted_price_twd": 1806.0,
+        "confidence": "高",
+        "confidence_pct": 80,
+        "key_signals": [
+          "ADR 缺口 -2.82%（昨收 TWD 1840 → 預測 TWD 1806）",
+          "↓ NVDA+AAPL 加權 -1.91%",
+          "新聞情緒 偏多（+0.42）"
+        ],
+        "risk_flags": [
+          "新聞風險：Tesla與SpaceX計劃在德州自建先進晶片廠，可能減少對台積電依賴",
+          "新聞風險：地緣政治緊張情勢升溫，伊朗戰爭可能衝擊AI產業發展"
+        ]
+      }
+    }
+  }
+}
