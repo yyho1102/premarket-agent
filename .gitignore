@@ -1,0 +1,10 @@
+# 忽略 Python 虛擬環境
+venv/
+.env
+
+# 忽略編譯暫存檔
+__pycache__/
+*.pyc
+
+# 忽略你生成的分析報告 (選配)
+reports/
