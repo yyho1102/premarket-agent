@@ -1,7 +1,7 @@
 anthropic
 python-dotenv
 yfinance
-requests
-beautifulsoup4
 pandas
+numpy
+requests
 streamlit
