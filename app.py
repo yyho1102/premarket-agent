@@ -1,68 +1,68 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-import os
 
-# 匯入你的個股模組
+# 導入你的個股邏輯
 from stocks import tsmc, yageo, iteq
-from utils.line_notify import push_report
 
-# 網頁設定
-st.set_page_config(page_title="台股盤前 AI 分析", layout="wide")
+st.set_page_config(page_title="AI 盤前分析系統", layout="wide", initial_sidebar_state="expanded")
 
-st.title("📈 盤前分析 Agent 儀表板")
-st.sidebar.header("控制面板")
+# 介面美化
+st.title("📈 台灣半導體/電子盤前分析")
+st.caption(f"數據更新時間：{datetime.now().strftime('%Y-%m-%d %H:%M')}")
 
-# 選擇要分析的股票
-options = {
-    "台積電 (2330)": tsmc,
-    "國巨 (2327)": yageo,
-    "聯茂 (6213)": iteq
-}
-selected_stocks = st.sidebar.multiselect("選擇分析對象", list(options.keys()), default=list(options.keys()))
-send_line = st.sidebar.checkbox("完成後發送 LINE 通知", value=False)
+# 側邊欄設定
+st.sidebar.header("分析設定")
+selected_targets = st.sidebar.multiselect(
+    "選擇追蹤個股",
+    options=["tsmc", "yageo", "iteq"],
+    default=["tsmc", "yageo", "iteq"],
+    format_func=lambda x: {"tsmc":"台積電 (2330)", "yageo":"國巨 (2327)", "iteq":"聯茂 (6213)"}[x]
+)
 
-if st.sidebar.button("開始執行 AI 分析"):
-    results = {}
+if st.sidebar.button("執行全自動 AI 分析"):
+    modules = {"tsmc": tsmc, "yageo": yageo, "iteq": iteq}
     
-    for name in selected_stocks:
-        with st.status(f"正在分析 {name}...", expanded=True) as status:
-            try:
-                # 執行各模組的 analyze() 函式
-                module = options[name]
-                res = module.analyze()
-                results[name] = res
-                
-                # 顯示預測結果
-                pred = res['prediction']
-                color = "green" if pred['predicted_change_pct'] > 0 else "red"
-                st.write(f"預測漲跌: :{color}[{pred['predicted_change_pct']:+.2f}%]")
-                st.write(f"信心等級: {pred['confidence']}")
-                status.update(label=f"{name} 分析完成！", state="complete")
-            except Exception as e:
-                st.error(f"{name} 分析出錯: {e}")
-                status.update(label=f"{name} 失敗", state="error")
+    # 建立多欄位顯示結果
+    cols = st.columns(len(selected_targets))
+    
+    for idx, target in enumerate(selected_targets):
+        with cols[idx]:
+            with st.spinner(f"正在計算 {target}..."):
+                try:
+                    # 執行各模組的分析核心
+                    res = modules[target].analyze()
+                    pred = res['prediction']
+                    
+                    # 顯示核心指標 (Metric)
+                    color_delta = "normal" if pred['predicted_change_pct'] == 0 else "inverse"
+                    st.metric(
+                        label=res['stock']['name'],
+                        value=f"NT$ {pred['predicted_price_twd']:.1f}",
+                        delta=f"{pred['predicted_change_pct']:+.2f}%",
+                        delta_color=color_delta
+                    )
+                    
+                    # 顯示信心標籤
+                    st.info(f"💡 信心度：{pred['confidence']}")
+                    
+                    # 顯示關鍵訊號
+                    with st.expander("查看分析細節"):
+                        st.write("**關鍵訊號：**")
+                        for sig in pred.get('key_signals', []):
+                            st.write(f"- {sig}")
+                        
+                        st.write("**市場情緒：**")
+                        st.write(res['sentiment']['stock_news']['label'])
+                        
+                except Exception as e:
+                    st.error(f"{target} 分析失敗")
+                    st.caption(str(e))
 
-    # 顯示總覽卡片
-    if results:
-        st.divider()
-        st.subheader("📊 分析總覽")
-        cols = st.columns(len(results))
-        for i, (name, data) in enumerate(results.items()):
-            with cols[i]:
-                p = data['prediction']
-                st.metric(name, f"{p['predicted_price_twd']:.1f}", f"{p['predicted_change_pct']:+.2f}%")
-                st.caption(f"信心度: {p['confidence']}")
+    st.success("✅ 所有分析任務已完成")
+else:
+    st.info("請點擊左側「執行全自動 AI 分析」開始運算。")
 
-        # LINE 推播邏輯
-        if send_line:
-            # 轉換格式以符合你的 push_report
-            summary = {"timestamp": datetime.now().isoformat(), "stocks": results}
-            if push_report(summary):
-                st.toast("LINE 推播成功！")
-            else:
-                st.toast("LINE 推播失敗，請檢查 Token。")
-
-    # 顯示詳細 JSON 內容 (選配)
-    with st.expander("查看原始數據"):
-        st.json(results)
+# 顯示 JSON 備份 (模擬你上傳的 summary 檔案內容)
+with st.sidebar.expander("開發者調試數據"):
+    st.write("此區塊可檢視原始分析結果 JSON")
